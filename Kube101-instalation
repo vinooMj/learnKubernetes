@@ -1,0 +1,87 @@
+# Setup Kubernetes on Ubuntu
+
+
+
+**Update system packages on each nodes**
+
+> sudo apt-get update
+
+> sudo apt-get upgrade
+
+> sudo apt-get install linux-image-extra-virtual
+
+> sudo reboot
+
+*This reeboot will exit you from the ssh nodes, login again and start as root user on each nodes.*
+
+> sudo su -
+
+**Install Docker engine on each nodes**
+
+*Remove any old version of Docker engine on each nodes.*
+
+* Uninstall old Docker engines in the node.
+
+> sudo apt-get remove docker docker-engine docker.i
+
+* Install dependencies.
+
+> sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+software-properties-common
+
+* Import Docker repository GPG key.
+
+> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+> sudo add-apt-repository \
+ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+ $(lsb_release -cs) \
+ stable"
+
+* Install docker.
+
+> sudo apt-get update
+
+> sudo apt-get install docker-ce
+
+*Once the docker has been installed, continue to configure the Kubernetes master node.*
+
+**Install and Configure Kubernetes Master and Worker**
+
+* Add Kubernetes repository on master and worker.
+
+> cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+* Import GPG key on master and worker.
+
+> curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+* Update apt package index on master and worker.
+
+> sudo apt update
+
+* Install Kubernetes components. (kubectl, kubelet, kubernetes-cni and kubeadm)
+
+> sudo apt install kubectl kubelet kubeadm kubernetes-cni
+
+> sudo apt -y install kubectl kubelet kubeadm kubernetes-cni
+
+* Confirm that all package binaries are present on the file system.
+
+> which kubelet
+
+*/usr/bin/kubelet*
+
+> which kubeadm
+
+*/usr/bin/kubeadm*
+
+* View version
+
+> kubectl version --client
+
