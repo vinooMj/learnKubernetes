@@ -1,0 +1,30 @@
+All your commands only execute in master node.
+
+//Reset your kubernetes
+>kubeadm reset - root user
+>kubeadm init -root user
+
+//check your worker node in your master node
+>kubectl get nodes
+>kubectl get nodes -o wide
+
+//Deploy yaml file 
+>kubectl apply -f filename.yaml
+
+//Get list of pods, it running in working node.
+>kubectl get pods
+
+//You can access your inside container 
+>kubectl exec -it <pod name> /bin/bash
+
+//When get pod gets error, you can see that container's log(error messege)
+>kubectl logs  containername
+
+//Get list of deployment pods
+>kubectl get deployment
+
+//delete your deployments
+>kubectl delete deployment  name
+>kubectl delete deployment --all
+
+kubectl delete svc --all
