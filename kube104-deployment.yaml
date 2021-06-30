@@ -1,0 +1,25 @@
+apiversion: v1/app //give your application version its manitory 
+kind : Deployment //create pod yaml file
+metadata:   //basic informations of deployment
+  name: ngenx-deploy
+  labels:
+    app: nginx-app
+    
+spec: //define container, image & port details inside spec
+ replicas:5 //five copy of worker node creation
+ selector:
+  matchLabels:
+     env: prod-pod //name identified by pod & it should be podnae
+  template:
+  metadata:   //basic informations of pod
+  name: example-nginexPod
+  labels:    //identifier
+    env: prod-pod
+    type: front-end
+    identifier: nginx-pod
+spec:      //define container, image & port details inside spec
+ containers:
+ name: ngenix-ctr
+ image: nginx //its pull a ngeinx image from docker hub
+ ports:
+  containerPort:80 
