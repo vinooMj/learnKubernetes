@@ -1,0 +1,18 @@
+FROM adoptopenjdk/openjdk8:alpine-jre //jdk8 initialize
+WORKDIR /home/ubuntu/doc //created project inside of doc
+
+ADD target/Project_Blockchain-1.0.jar app.jar //inside target file has jar
+
+ENTRYPOINT ["java","-jar","/home/ubuntu/doc/app.jar"] //run command for java jar
+
+
+*********************************************
+Commands
+//after created a docker file, run this docker image build command 
+docker build -t vinoo301/blockchainapp:1 .
+
+//you get error above command running before docker login
+docker login
+
+//image built cmd
+docker push vinoo301/blockedgeapp:1
