@@ -1,0 +1,20 @@
+apiVersion: app/v1
+kind: "Service" //it is connecting pod to outside or exposing to outside machines
+metadata:
+   name: example_service
+   labels:
+     name: example_service // service identification
+spec:
+   ports:
+     name: aport
+     protocol: TCP // default using TCP, you can use other protocols
+     port: 8050
+     targetPort: 8051 //container port
+   selector:
+     app: example_peer //its pod name
+     
+     
+     
+     --------
+     //Run this command in master node
+     kubectl apply -f kube106-services.yaml
