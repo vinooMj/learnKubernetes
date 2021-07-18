@@ -1,0 +1,20 @@
+apiVersion: v8
+kind: Deployment   // create deployment configuration and replication pod 
+metadata:
+   name: sampleDeployment;
+   labels:
+     name: sampleDeployment
+spec:
+   replicas: 2 // two pods replicated, when get more request it splited into two pods
+   selector:
+   template:
+    metadata:
+    labels:
+     app: sampleDeployment
+  spec:
+   containers:
+     -name: deployContainer
+      image: bunchbox    //dummy image
+      ports:
+       -containerPort: 8080
+  
