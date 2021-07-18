@@ -5,7 +5,7 @@ metadata:
    labels:
      name: sampleDeployment
 spec:
-   replicas: 2 // two pods replicated, when get more request it splited into two pods
+   replicas: 2 // two worker node pods replicated, when get more request it splited into two node pods
    selector:
    template:
     metadata:
