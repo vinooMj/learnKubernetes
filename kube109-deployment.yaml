@@ -1,4 +1,4 @@
-apiVersion: v8
+apiVersion: v9
 kind: Deployment   // create deployment configuration and replication pod 
 metadata:
    name: sampleDeployment;
