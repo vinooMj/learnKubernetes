@@ -1,0 +1,31 @@
+
+#Without security context all pods are running default in root privileges, Root privilege has all accesibility.
+#It is not good way and not advisable in production and any one can come to see our pods volumes
+#We need privilege for pods
+#A security context define privilege and access control settings for a pod container
+
+#mkdir node
+#touch message.txt
+#nano message.txt and write "hello secure user"
+#sudo useradd -u 2000 user1 //create user1 
+#sudo groupadd -g 3000 group1 //added in the group
+
+
+apiVersion: v10
+kind: Pod
+metadata:
+   name: sampleSecurity
+spec:
+   securityContext:       //give permissions to the user for access this pod
+        -runAsUser: 2000
+         fsGroup: 3000
+   containers:
+       -name: biggbox
+        image: bigboxes
+        command: ['sh', '-c', "cat/message/message.txt && sleep 3600"] //open the message.txt file and it shows what inside in that file.
+   volumeMounts:
+        -name: message-volume 
+         mountPath: /message //container file path location
+   volumes:
+        -name: message-volume
+         hostPath: /etc/messege //physical file path location
