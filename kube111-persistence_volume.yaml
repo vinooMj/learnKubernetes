@@ -1,0 +1,78 @@
+#persistance volume: Its store the datas in another server machine
+#why: pods can be deleted or issue we want protect our data so we use the persistance volume
+#NFS server- Network File System is a distributed file system which use our persistance volume
+#Install nfs in a server machine
+#create cluster and worker node
+#install worker node - apt install nfs-common
+
+apiVersion: v11
+kind: PersistentVolume //object
+metadata:
+  name: demo-pv
+spec:
+  storageClassName: sampleVolume
+  capacity:
+    storage: 5Gi //give storage in the persistance server
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /home/ubuntu/kubes //path for persistence storage
+    server: 10.182.0.3 //private ip address
+---
+apiVersion: v1
+kind: PersistentVolumeClaim //object
+metadata:
+  name: demo-pv-claim //persistent volume claim (PVC) is a request for storage
+spec:
+  storageClassName: sampleVolume
+  accessModes:
+    - ReadWriteOnce   
+  resources:
+    requests:
+      storage: 2Gi   
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/var/store/html"
+          name: demo-pvc
+      volumes:
+      - name: demo-pvc
+        persistentVolumeClaim:
+           claimName: demo-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  type: NodePort //expose outside from browser
+  ports:
+    - port: 80
+      nodePort: 30085
+      name: http
+  selector:
+    name: nginx
+
