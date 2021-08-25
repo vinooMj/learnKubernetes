@@ -28,3 +28,5 @@ All your commands only execute in master node.
 >kubectl delete deployment --all
 
 kubectl delete svc --all
+//delete the deploymentof the file
+kubectl delete -f filename
