@@ -30,3 +30,7 @@ All your commands only execute in master node.
 kubectl delete svc --all
 //delete the deploymentof the file
 kubectl delete -f filename
+
+//get presistence volume & claim
+kubectl get pv
+kubectl get pvc
