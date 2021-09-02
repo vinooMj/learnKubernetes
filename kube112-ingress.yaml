@@ -1,0 +1,16 @@
+#ingress - Pods connects external application. 
+
+
+
+apiVersion: v1
+kind: Ingress
+metadata:
+  name: myapp
+spec:
+  rules:
+  - host: shopy.com //connect external application
+    http:
+     paths:
+     - backend:
+         serviceName: internal-service //connect pod services
+         servicePort: 8080 //connect service port
