@@ -1,5 +1,5 @@
 #ingress - Pods connects external application. 
-
+#With the Ingress Controller you can setup a domain name which maps to your pod; you don't need to give your Service the LoadBalancer type if you use an Ingress Controller.
 
 
 apiVersion: v1
