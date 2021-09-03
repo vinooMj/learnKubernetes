@@ -34,3 +34,6 @@ kubectl delete -f filename
 //get presistence volume & claim
 kubectl get pv
 kubectl get pvc
+
+//kube scalup reduce command
+kubectl scale --replicas=0 deployment <deployment-name> -n <namespace-name>
