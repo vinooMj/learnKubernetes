@@ -33,6 +33,12 @@ kubectl delete -f filename
 
 //get presistence volume & claim
 kubectl get pv
+
+//what is happening in container which use in debugging 
+kubectl get event
+
+//watch the container
+watch kubect get all
 kubectl get pvc
 
 //kube scalup reduce command
