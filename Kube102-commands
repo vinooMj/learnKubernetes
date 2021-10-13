@@ -43,3 +43,6 @@ kubectl get pvc
 
 //kube scalup reduce command
 kubectl scale --replicas=0 deployment <deployment-name> -n <namespace-name>
+
+//kube get ingress
+kubectl get ingress
