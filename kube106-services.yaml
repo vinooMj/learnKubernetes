@@ -1,3 +1,7 @@
+#services - its connect the pods and it has static IP
+#connected through pod spec-selector- app name should be same to service spec-selector-app name
+
+
 apiVersion: app/v1
 kind: "Service" //it is connecting pod to outside or exposing to outside machines
 metadata:
@@ -18,3 +22,4 @@ spec:
      --------
      //Run this command in master node
      kubectl apply -f kube106-services.yaml
+     //get service 
