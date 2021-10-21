@@ -1,0 +1,18 @@
+#NodePort - Its coonect your pods to external 
+#It open port in that Node
+
+
+apiversion: v1
+kind: service
+metadata:
+     name: mybox
+spec:
+     selector:
+        app: mybox-test
+     type: NodePort
+     ports:
+        - name: mybox-port
+          protocol: TCP
+          port: 32323
+          targetPort: 2247
+          nodePort: 30000   //range 30000 to 32767
