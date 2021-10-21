@@ -1,5 +1,7 @@
 #NodePort - Its coonect your pods to external 
 #It open port in that Node
+#It advisable for testing purpose only
+#It should not use in production
 
 
 apiversion: v1
