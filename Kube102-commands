@@ -34,6 +34,9 @@ kubectl delete -f filename
 //get presistence volume & claim
 kubectl get pv
 
+//get more pod details 
+kubectl get pods <pod name> -o yaml
+
 //what is happening in container which use in debugging 
 kubectl get event
 
