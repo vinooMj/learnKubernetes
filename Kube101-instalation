@@ -115,3 +115,10 @@ Then you can join any number of worker nodes by running the following on each as
 
 kubeadm join 10.0.3.149:6443 --token e9xdr8.65o1f5q7vnok8dyr \
     --discovery-token-ca-cert-hash sha256:6418e0c027bc589959c03bc95c77bd618d503c9bf181d770505657cb69500c20
+    
+    
+    ----Uninstall kubernetes
+    kubeadm reset
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get autoremove  
+sudo rm -rf ~/.kube
