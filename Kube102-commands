@@ -14,6 +14,8 @@ All your commands only execute in master node.
 //Get list of pods, it running in working node.
 >kubectl get pods
 
+>kubectl describe <pods or sv>
+
 //You can access your inside container 
 >kubectl exec -it <pod name> /bin/bash
 
